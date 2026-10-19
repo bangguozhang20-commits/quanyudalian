@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>内容管理后台 | 隆一堂 LONG YI TANG</title>
+<link rel="icon" type="image/png" href="../assets/img/logo.png">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+.adm{max-width:760px;margin:0 auto;padding:48px 28px 90px}
+.adm-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:34px;flex-wrap:wrap;gap:14px}
+.adm-head img{height:44px}
+.adm-head .back{font-size:14px;color:var(--ink-3)}
+.adm-head .back a{color:var(--gold);font-weight:600}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px;margin-bottom:22px}
+.panel h3{font-family:var(--serif);font-size:19px;margin-bottom:6px}
+.panel .tip{font-size:13px;color:var(--ink-3);margin-bottom:18px;line-height:1.7}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.field input{border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:15px;font-family:var(--sans);outline:none;transition:.2s;background:var(--bg)}
+.field input:focus{border-color:var(--gold)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.adm-status{margin-top:16px;font-size:14px;padding:12px 16px;border-radius:10px;display:none}
+.adm-status.ok{display:block;background:#E1F5EE;color:#085041;border:1px solid #5DCAA5}
+.adm-status.err{display:block;background:#FCEBEB;color:#791F1F;border:1px solid #F09595}
+.adm-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.steps{font-size:13px;color:var(--ink-3);line-height:1.9;background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-top:10px}
+.steps b{color:var(--ink-2)}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="adm">
+  <div class="adm-head">
+    <div class="brand"><img src="../assets/img/logo.png" alt="隆一堂"> <b style="font-family:var(--serif);font-size:18px">隆一堂 · 内容管理后台</b></div>
+    <div class="back"><a href="../index.html">← 返回官网</a></div>
+  </div>
+
+  <div class="panel">
+    <h3>第一步：连接 GitHub</h3>
+    <p class="tip">粘贴一次令牌即可，浏览器会记住。令牌只授予本仓库的文件读写权限。</p>
+    <div class="field">
+      <label>GitHub 访问令牌（Personal Access Token）</label>
+      <input type="password" id="token" placeholder="github_pat_ 开头的令牌">
+    </div>
+    <div class="adm-btns">
+      <button class="btn btn-dark" id="btn-connect">保存令牌并读取内容</button>
+    </div>
+    <div class="steps">
+      <b>还没有令牌？点这里生成（约 1 分钟）：</b><br>
+      1. 打开 <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" style="color:var(--gold)">github.com/settings/personal-access-tokens/new</a><br>
+      2. Token name 填「网站后台」；Expiration 选 No expiration 或 1 年<br>
+      3. Repository access 选 <b>Only select repositories</b> → 选 <b>quanyudalian</b><br>
+      4. Permissions → Repository permissions → <b>Contents</b> 设为 <b>Read and write</b>（其余不动）<br>
+      5. 点 Generate token，复制 <b>github_pat_</b> 开头的字符串粘贴到上面
+    </div>
+    <div class="adm-status" id="status1"></div>
+  </div>
+
+  <div class="panel">
+    <h3>第二步：修改网站内容</h3>
+    <p class="tip">改完点底部「保存并上线」，约 1 分钟后官网自动更新（Cloudflare 重新部署）。</p>
+    <div class="grid2">
+      <div class="field"><label>招商热线 / 联系电话</label><input id="f-phone" placeholder="175 4276 3058"></div>
+      <div class="field"><label>询盘接收邮箱</label><input id="f-email" placeholder="sales@quanyudalian.asia"></div>
+    </div>
+    <div class="field"><label>抖音主页链接（点击复制用）</label><input id="f-douyin" placeholder="https://v.douyin.com/..."></div>
+    <div class="field"><label>微信视频号链接（点击复制用）</label><input id="f-channels" placeholder="https://weixin.qq.com/sph/..."></div>
+
+    <h3 style="margin-top:26px">产品价格</h3>
+    <p class="tip">填数字即可带货币符号，如「¥3,280」。</p>
+    <div class="grid2">
+      <div class="field"><label>淡干辽参礼盒</label><input id="p-dried"></div>
+      <div class="field"><label>即食辽参</label><input id="p-ready"></div>
+      <div class="field"><label>鲜食燕窝 · 纯臻红盒</label><input id="p-royal"></div>
+      <div class="field"><label>精炖燕窝 · 金装</label><input id="p-classic"></div>
+    </div>
+
+    <div class="adm-btns">
+      <button class="btn btn-gold" id="btn-save">保存并上线</button>
+      <button class="btn btn-outline" id="btn-reload">重新读取</button>
+    </div>
+    <div class="adm-status" id="status2"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var OWNER = "bangguozhang20-commits", REPO = "quanyudalian", BRANCH = "main",
+      PATH = "data/site.json",
+      API = "https://api.github.com/repos/" + OWNER + "/" + REPO + "/contents/" + PATH,
+      token = "", sha = "";
+
+  var $ = function (id) { return document.getElementById(id); };
+  function show(el, msg, ok) { el.textContent = msg; el.className = "adm-status " + (ok ? "ok" : "err"); }
+
+  function b64d(s) {
+    var bin = atob(s.replace(/\s/g, "")), bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }
+  function b64e(str) {
+    var bytes = new TextEncoder().encode(str), bin = "";
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin);
+  }
+  function gh(method, body) {
+    return fetch(API + "?ref=" + BRANCH + "&t=" + Date.now(), {
+      method: method,
+      headers: {
+        "Authorization": "Bearer " + token,
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "Content-Type": "application/json"
+      },
+      body: body ? JSON.stringify(body) : undefined
+    }).then(function (r) {
+      if (r.status === 401 || r.status === 403) throw new Error("令牌无效或权限不足，请按上面步骤重新生成");
+      if (r.status === 404) throw new Error("未找到 " + PATH + "，请确认选择了 quanyudalian 仓库");
+      if (r.status === 409) throw new Error("文件刚被别处更新，请点「重新读取」后再保存");
+      if (!r.ok) throw new Error("GitHub 请求失败（" + r.status + "），稍后再试");
+      return r.json();
+    });
+  }
+
+  function fill(d) {
+    $("f-phone").value = d.phone || "";
+    $("f-email").value = d.email || "";
+    $("f-douyin").value = d.douyin || "";
+    $("f-channels").value = d.channels || "";
+    var p = d.prices || {};
+    $("p-dried").value = p.dried || ""; $("p-ready").value = p.ready || "";
+    $("p-royal").value = p.royal || ""; $("p-classic").value = p.classic || "";
+  }
+  function collect() {
+    return {
+      phone: $("f-phone").value.trim(),
+      email: $("f-email").value.trim(),
+      douyin: $("f-douyin").value.trim(),
+      channels: $("f-channels").value.trim(),
+      prices: {
+        dried: $("p-dried").value.trim(), ready: $("p-ready").value.trim(),
+        royal: $("p-royal").value.trim(), classic: $("p-classic").value.trim()
+      }
+    };
+  }
+
+  function load() {
+    return gh("GET").then(function (j) {
+      sha = j.sha;
+      fill(JSON.parse(b64d(j.content)));
+      show($("status1"), "已连接，内容读取成功，可以开始修改。", true);
+    });
+  }
+
+  $("btn-connect").addEventListener("click", function () {
+    token = $("token").value.trim();
+    if (!token) { show($("status1"), "请先粘贴令牌", false); return; }
+    try { localStorage.setItem("lyt-admin-token", token); } catch (e) {}
+    load().catch(function (err) { show($("status1"), err.message, false); });
+  });
+
+  $("btn-reload").addEventListener("click", function () {
+    if (!token) { show($("status2"), "请先在上方完成连接", false); return; }
+    load().then(function () { show($("status2"), "已重新读取线上内容。", true); })
+      .catch(function (err) { show($("status2"), err.message, false); });
+  });
+
+  $("btn-save").addEventListener("click", function () {
+    if (!token) { show($("status2"), "请先在上方完成连接", false); return; }
+    var data = collect();
+    if (!data.phone || !data.email) { show($("status2"), "电话和邮箱不能为空", false); return; }
+    gh("PUT", {
+      message: "后台更新：联系方式与价格",
+      branch: BRANCH,
+      sha: sha,
+      content: b64e(JSON.stringify(data, null, 2) + "\n")
+    }).then(function (j) {
+      sha = j.content.sha;
+      show($("status2"), "保存成功！约 1 分钟后官网自动更新，可打开官网确认。", true);
+    }).catch(function (err) { show($("status2"), err.message, false); });
+  });
+
+  try { token = localStorage.getItem("lyt-admin-token") || ""; } catch (e) {}
+  if (token) { $("token").value = token; load().catch(function () {}); }
+})();
+</script>
+</body>
+</html>

@@ -25,6 +25,7 @@
       b.classList.toggle('on', b.getAttribute('data-lang') === lang);
     });
     try { localStorage.setItem('lyt-lang', lang); } catch (e) {}
+    if (window.applySiteData) window.applySiteData();
   }
   var saved = 'zh';
   try { saved = localStorage.getItem('lyt-lang') || 'zh'; } catch (e) {}
@@ -91,7 +92,8 @@
           ? '询盘已生成邮件草稿，发送后我们的招商团队将在 24 小时内回复。您也可以直接拨打招商热线 <b>175 4276 3058</b>。'
           : 'Your inquiry has been drafted as an email. Our team replies within 24 hours — or call us at <b>+86 175 4276 3058</b>.';
       }
-      window.location.href = 'mailto:sales@longyitang.com?subject=' +
+      var email = (window.SITE_DATA && window.SITE_DATA.email) || 'sales@quanyudalian.asia';
+      window.location.href = 'mailto:' + email + '?subject=' +
         encodeURIComponent('[B2B Inquiry] ' + d('company') + ' — ' + d('product')) +
         '&body=' + encodeURIComponent(body);
     });

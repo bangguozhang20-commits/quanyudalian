@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
 
 # 上线时将域名替换为正式域名
 Sitemap: https://www.quanyudalian.asia/sitemap.xml
