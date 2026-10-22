@@ -1,20 +1,18 @@
 /* ElectricLogo — React Bits component style (registry: ElectricLogo-JS-CSS) */
 .electric-logo{position:relative;width:100%;height:100%;overflow:hidden}
 
-/* 首页首屏：隆一堂商标以「电弧/闪电」形态呈现 */
+/* 首页首屏：隆一堂商标以「电弧/闪电」形态呈现在星空中央 */
 .electric-logo.hero-mark{
-  width:min(300px,56vw);
-  height:min(176px,33vw);
-  margin:0 0 18px -8px;
+  width:min(430px,72vw);
+  height:min(250px,42vw);
+  margin:0 auto 14px;
+  filter:drop-shadow(0 0 30px rgba(255,255,255,.14));
   pointer-events:auto;
-  /* 局部深色晕底：视频画面较亮时也能保证白色电弧清晰 */
-  background:radial-gradient(ellipse 72% 66% at 47% 46%,rgba(7,6,4,.78) 0%,rgba(7,6,4,.45) 52%,rgba(7,6,4,0) 78%);
-  filter:drop-shadow(0 0 26px rgba(255,255,255,.12));
 }
 .electric-logo .electric-fallback{
   width:100%;height:100%;object-fit:contain;
   filter:drop-shadow(0 0 20px rgba(255,255,255,.35));
 }
 @media (max-width:820px){
-  .electric-logo.hero-mark{width:min(230px,60vw);height:min(136px,36vw);margin:0 0 12px -4px}
+  .electric-logo.hero-mark{width:min(320px,74vw);height:min(186px,43vw);margin:0 auto 8px}
 }
