@@ -72,10 +72,11 @@
   </div>
 </header>
 
-<!-- 首屏：动态星空 + 电弧商标 -->
+<!-- 首屏视频 -->
 <section class="hero">
-  <div class="starbg" aria-hidden="true"></div>
-  <canvas class="stars" aria-hidden="true"></canvas>
+  <video autoplay muted loop playsinline poster="assets/img/storefront.jpg">
+    <source src="assets/video/brand.mp4" type="video/mp4">
+  </video>
   <div class="veil"></div>
   <div class="container">
     <!-- 隆一堂商标 · 电弧发光形态（React Bits ElectricLogo） -->
@@ -367,7 +368,6 @@
 
 <script src="assets/js/main.js"></script>
 <script src="assets/js/dyn.js"></script>
-<script src="assets/js/starfield.js" defer></script>
 <script type="module" src="assets/js/electric-logo.js"></script>
 </body>
 </html>
