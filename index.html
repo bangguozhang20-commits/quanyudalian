@@ -71,13 +71,17 @@
   </div>
 </header>
 
-<!-- 首屏视频 -->
-<section class="hero">
-  <video autoplay muted loop playsinline poster="assets/img/storefront.jpg">
-    <source src="assets/video/brand.mp4" type="video/mp4">
-  </video>
-  <div class="veil"></div>
-  <div class="container">
+<!-- 海洋首屏 -->
+<section class="hero hero-ocean" id="hero">
+  <canvas id="sea" aria-hidden="true"></canvas>
+  <div class="container hero-center">
+    <div class="emblem">
+      <span class="waves"></span>
+      <span class="disc"></span>
+      <img src="assets/img/logo.png" alt="隆一堂发光商标">
+      <span class="ring"></span>
+      <span class="ring2"></span>
+    </div>
     <span class="eyebrow" data-en="LONG YI TANG · FROM 39°N DEEP SEA">LONG YI TANG · 源自北纬39°</span>
     <h1 data-en="Deep-Sea Sea Cucumber · Finest Bird's Nest — <em>Nutrition from Nature</em>">深海辽参 · 臻品燕窝<br><em>营养源自天然</em></h1>
     <p class="lead" data-en="From the contracted cold-water sea beds of Changhai, Dalian to modern stewing workshops in Chaozhou, LONG YI TANG controls every step — diver-harvested Liaoning sea cucumber and top-grade bird's nest, delivered direct to distributors and families worldwide.">隆一堂深耕大健康滋补领域，严选辽宁长海深海辽刺参与高品质燕窝。承包海域、深海人工捕捞、一手直供，从海域到餐桌全程把控，为全球经销商与家庭提供值得信赖的东方滋补方案。</p>
@@ -90,6 +94,20 @@
       <div class="badge"><b data-en="Contracted Sea Areas">承包海域</b><span data-en="First-hand direct supply">一手直供 · 无中间环节</span></div>
       <div class="badge"><b data-en="Diver Harvested">深海捕捞</b><span data-en="Hand-picked by divers">人工潜水 · 只选成参</span></div>
       <div class="badge"><b data-en="B2B + B2C">全球供应</b><span data-en="Wholesale, OEM & retail">批发 · 定制 · 零售</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 品牌影像 -->
+<section class="sec" style="background:#fff;padding:96px 0">
+  <div class="container center rv">
+    <span class="eyebrow" data-en="BRAND FILM">品牌影像</span>
+    <h2 class="sec-title" data-en="From Deep Sea to Your Doorstep">从深海到门店</h2>
+    <p class="sec-sub" data-en="30 seconds inside LONG YI TANG — the waters, the workshop, the storefront.">30 秒走进隆一堂：海域、车间与门店。</p>
+    <div class="brandfilm">
+      <video autoplay muted loop playsinline poster="assets/img/storefront.jpg">
+        <source src="assets/video/brand.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
@@ -153,8 +171,9 @@
         </div>
       </a>
     </div>
-    <div class="grid-4">
-      <a class="card rv" href="products/dried-sea-cucumber.html">
+    <div class="carousel rv">
+      <div class="car-track" id="carTrack">
+      <a class="card" href="products/dried-sea-cucumber.html">
         <div class="pic"><img src="assets/img/dish.jpg" alt="淡干辽参礼盒 泡发后肉质厚实" loading="lazy"></div>
         <div class="body">
           <span class="tag" data-en="DRIED GIFT BOX">淡干礼盒</span>
@@ -194,6 +213,14 @@
           <span class="go" data-en="Details">查看详情</span>
         </div>
       </a>
+      </div>
+      <button class="car-btn prev" aria-label="上一张">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="car-btn next" aria-label="下一张">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="car-dots" id="carDots"></div>
     </div>
   </div>
 </section>
@@ -354,5 +381,6 @@
 
 <script src="assets/js/main.js"></script>
 <script src="assets/js/dyn.js"></script>
+<script src="assets/js/effects.js"></script>
 </body>
 </html>

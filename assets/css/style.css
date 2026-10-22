@@ -251,3 +251,72 @@ footer .soc svg{flex:none}
   footer .cols{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr}
 }
+
+/* ============ 海洋主题升级（2026-10-22） ============ */
+
+/* --- 深海首屏 --- */
+.hero-ocean{background:radial-gradient(1200px 720px at 50% -12%,#0e3a56 0%,#071c2e 48%,#040f1b 100%);min-height:94vh;flex-direction:column;justify-content:center}
+.hero-ocean #sea{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-ocean .hero-center{position:relative;z-index:3;text-align:center;display:flex;flex-direction:column;align-items:center;padding-top:96px;padding-bottom:60px}
+.hero-ocean .badge-row{justify-content:center}
+.hero-ocean .badge-row-wrap{position:relative;z-index:3;padding-bottom:56px}
+.hero-ocean .badge-row-wrap .badge-row{margin-top:0;justify-content:center}
+
+/* --- 发光商标 · 画中画 --- */
+.emblem{position:relative;width:min(300px,62vw);aspect-ratio:1;margin:0 auto 48px}
+.emblem .ring,.emblem .ring2,.emblem .waves,.emblem .disc{position:absolute;border-radius:50%;pointer-events:none}
+.emblem .ring{inset:0;border:1px solid rgba(201,169,97,.55);z-index:4}
+.emblem .ring2{inset:-16px;border:1px solid rgba(125,184,218,.22);animation:spin 46s linear infinite;z-index:4}
+.emblem .ring2::before{content:"";position:absolute;top:-3px;left:calc(50% - 4px);width:8px;height:8px;border-radius:50%;background:#9ed1f0;box-shadow:0 0 14px #9ed1f0}
+.emblem .waves{inset:8px;overflow:hidden;background:radial-gradient(circle at 50% 28%,rgba(14,58,86,.92),rgba(4,16,28,.96))}
+.emblem .waves::before,.emblem .waves::after{content:"";position:absolute;top:52%;left:-50%;width:200%;height:200%;border-radius:42%;background:rgba(125,184,218,.15);animation:waveSpin 12s linear infinite}
+.emblem .waves::after{top:57%;border-radius:45%;background:rgba(201,169,97,.12);animation-duration:8.5s;animation-direction:reverse}
+.emblem .disc{inset:17%;background:radial-gradient(circle at 50% 42%,#fffdf6 0%,#f6efdc 58%,rgba(246,239,220,0) 74%);box-shadow:0 0 70px 22px rgba(246,239,220,.32),0 0 140px 60px rgba(125,184,218,.16);animation:halo 5.5s ease-in-out infinite;z-index:1}
+.emblem img{position:absolute;inset:0;margin:auto;width:53%;z-index:2;animation:floaty 5s ease-in-out infinite}
+@keyframes waveSpin{to{transform:rotate(360deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes halo{0%,100%{opacity:.95}50%{opacity:.72}}
+
+/* --- 品牌影像 --- */
+.brandfilm{max-width:920px;margin:44px auto 0;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.brandfilm video{width:100%;display:block}
+
+/* --- 药丸导航 · 滑动背景（layoutId 等效） --- */
+nav.main{position:relative;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px;gap:4px;box-shadow:0 10px 30px -14px rgba(23,20,16,.15)}
+nav.main>a{position:relative;z-index:2;padding:9px 18px;border-radius:999px;font-size:14.5px}
+nav.main>a.act{background:var(--ink);color:#fff}
+nav.main>a.act::after{display:none}
+.nav-pill{position:absolute;top:6px;bottom:6px;left:0;width:0;border-radius:999px;background:var(--bg-soft);opacity:0;z-index:1;pointer-events:none;transition:left .38s cubic-bezier(.22,.9,.28,1),width .38s cubic-bezier(.22,.9,.28,1),opacity .18s}
+.nav-cta{margin-left:4px;padding:11px 22px}
+.has-sub .sub{top:calc(100% + 16px)}
+
+/* --- 苹果式卡片轮播 --- */
+.carousel{position:relative}
+.car-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x proximity;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:30px calc(50% - 170px) 40px;position:relative}
+.car-track::-webkit-scrollbar{display:none}
+.car-track>.card{flex:0 0 340px;scroll-snap-align:center;opacity:.45;transform:scale(.93);transition:opacity .45s,transform .45s,box-shadow .45s}
+.car-track>.card.on{opacity:1;transform:scale(1)}
+.car-btn{position:absolute;top:44%;z-index:5;width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:0 10px 30px -10px rgba(23,20,16,.25);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);transition:.25s;padding:0}
+.car-btn:hover{background:var(--ink);color:#fff}
+.car-btn.prev{left:10px}
+.car-btn.next{right:10px}
+.car-dots{display:flex;gap:8px;justify-content:center;margin-top:4px}
+.car-dot{width:8px;height:8px;border-radius:999px;background:#d9d1c1;border:0;cursor:pointer;padding:0;transition:.3s}
+.car-dot.on{background:var(--gold);width:22px}
+
+@media(max-width:760px){
+  nav.main{background:#fff;border:0;border-radius:0;padding:20px 28px 34px;gap:6px;box-shadow:0 18px 40px -20px rgba(23,20,16,.35)}
+  .nav-pill{display:none}
+  nav.main>a{padding:12px 0;border-radius:0}
+  nav.main>a.act{background:none;color:var(--gold)}
+  .car-btn{display:none}
+  .car-track{padding:26px 16px 36px}
+  .car-track>.card{flex-basis:78%}
+  .emblem{width:min(240px,64vw)}
+  .hero-ocean .hero-center{padding-top:70px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .emblem .waves::before,.emblem .waves::after,.emblem .ring2,.emblem .disc,.emblem img{animation:none}
+}
