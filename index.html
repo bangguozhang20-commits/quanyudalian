@@ -29,7 +29,14 @@
 {"@context":"https://schema.org","@type":"WebSite","name":"隆一堂 LONG YI TANG","url":"https://www.quanyudalian.asia/","inLanguage":["zh-CN","en"]}
 </script>
 </head>
-<body>
+<body class="dark-stage">
+
+<!-- 星空动态背景：数据条以下淡入显示，滚动时固定不动 -->
+<div class="bg-stage" aria-hidden="true">
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="assets/video/starry-bg.mp4" type="video/mp4">
+  </video>
+</div>
 
 <!-- 顶部联系栏 -->
 <div class="topbar">
@@ -49,7 +56,7 @@
 <header class="site">
   <div class="container">
     <a class="brand" href="index.html" aria-label="隆一堂 LONG YI TANG">
-      <img src="assets/img/logo.png" alt="隆一堂 LONG YI TANG 品牌标识">
+      <img src="assets/img/logo-light.png" alt="隆一堂 LONG YI TANG 品牌标识">
       <span class="bt"><b data-en="LONG YI TANG">隆一堂</b><span>LONG YI TANG · EST. DALIAN</span></span>
     </a>
     <button class="burger" aria-label="菜单"><span></span><span></span><span></span></button>
@@ -126,7 +133,7 @@
 </section>
 
 <!-- 产品线 -->
-<section class="sec" id="products" style="background:#fff;padding-top:100px">
+<section class="sec" id="products" style="padding-top:100px">
   <div class="container">
     <div class="center rv">
       <span class="eyebrow" data-en="PRODUCTS">产品中心</span>
@@ -219,7 +226,7 @@
 </section>
 
 <!-- 生产车间 -->
-<section class="sec" style="background:#fff">
+<section class="sec">
   <div class="container split rev">
     <div class="media rv"><img src="assets/img/workshop.jpg" alt="隆一堂现代化生产车间" loading="lazy"></div>
     <div class="rv">

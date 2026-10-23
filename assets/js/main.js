@@ -102,3 +102,23 @@
   /* ---------- footer year ---------- */
   document.querySelectorAll('.js-year').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();
+
+/* ---------- 星空动态背景：滚过数据条后平滑淡入 ---------- */
+(function () {
+  var stage = document.querySelector('.bg-stage');
+  if (!stage) return;
+  var strip = document.querySelector('.strip');
+  var ticking = false;
+  function update() {
+    ticking = false;
+    if (!strip) { stage.classList.add('on'); return; }
+    var bottom = strip.getBoundingClientRect().bottom;
+    if (bottom <= window.innerHeight * 0.55) stage.classList.add('on');
+    else stage.classList.remove('on');
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
